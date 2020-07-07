@@ -1,0 +1,12 @@
+//
+// Created by artem on 07.07.2020.
+//
+
+#ifndef SIMPLEPLATFORMER_TEMPLATECLASS_H
+#define SIMPLEPLATFORMER_TEMPLATECLASS_H
+
+
+void kek();
+
+
+#endif //SIMPLEPLATFORMER_TEMPLATECLASS_H
