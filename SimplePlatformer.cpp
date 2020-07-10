@@ -1,8 +1,11 @@
 #include <iostream>
-#include <templateClass.h>
+#include <SFML/Graphics.hpp>
+#include <Game.h>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    kek();
+int main()
+{
+    Game simplePlatformer{};
+    simplePlatformer.runGameCycle();
+
     return 0;
 }

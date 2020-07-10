@@ -59,5 +59,5 @@ if(SFML_FOUND)
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
 endif()
 
-add_executable(SimplePlatformer SimplePlatformer.cpp templateClass.cpp)
+add_executable(SimplePlatformer SimplePlatformer.cpp src/Game.cpp include/Game.h)
 target_link_libraries (SimplePlatformer sfml-graphics sfml-window sfml-system)
