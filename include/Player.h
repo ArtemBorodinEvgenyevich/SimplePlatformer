@@ -14,10 +14,13 @@ private:
     std::string m_texturePath;
     sf::Texture m_objTexture;
     sf::Sprite  m_objSprite;
+    sf::IntRect m_spriteFrame;
+    sf::Clock m_animationTimer;
 
     void SetTexture();
     void SetSprite();
     void UpdateMovement();
+    void UpdateAnimation();
 
 public:
     Player();
