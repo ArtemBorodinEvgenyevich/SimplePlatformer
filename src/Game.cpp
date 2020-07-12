@@ -43,6 +43,9 @@ void Game::runGameCycle()
 
         // Clear screen from previous frame and display a new rendered frame
         m_window.clear();
+
+        player.draw(m_window);
+
         m_window.display();
     }
 
