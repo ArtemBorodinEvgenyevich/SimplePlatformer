@@ -10,18 +10,21 @@
 
 class Player {
 private:
+    bool m_isMoving;
     std::string m_texturePath;
     sf::Texture m_objTexture;
     sf::Sprite  m_objSprite;
 
     void SetTexture();
     void SetSprite();
+    void UpdateMovement();
 
 public:
     Player();
     ~Player();
 
     void draw(sf::RenderTarget &target);
+    void update();
 };
 
 
