@@ -1,0 +1,8 @@
+//
+// Created by lkora on 13.07.2020.
+//
+
+#ifndef SIMPLEPLATFORMER_TILE_H
+#define SIMPLEPLATFORMER_TILE_H
+
+#endif //SIMPLEPLATFORMER_TILE_H
