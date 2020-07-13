@@ -73,5 +73,5 @@ if(SFML_FOUND)
     message(STATUS "PROJECT_SPRITE_DIR: ${PROJECT_SPRITE_DIR}")
 endif()
 
-add_executable(SimplePlatformer SimplePlatformer.cpp src/Game.cpp include/Game.h src/Player.cpp include/Player.h)
+add_executable(SimplePlatformer SimplePlatformer.cpp src/Game.cpp include/Game.h src/Player.cpp include/Player.h src/AnimationEntity.cpp include/AnimationEntity.h src/GraphicsStructures.cpp include/GraphicsStructures.h)
 target_link_libraries (SimplePlatformer sfml-graphics sfml-window sfml-system)

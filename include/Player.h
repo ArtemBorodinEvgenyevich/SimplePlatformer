@@ -7,6 +7,8 @@
 
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <AnimationEntity.h>
+
 
 class Player {
 private:

@@ -2,8 +2,9 @@
 // Created by artem on 12.07.2020.
 //
 
-#include <pbt.h>
+//#include <pbt.h>
 #include "Player.h"
+
 
 Player::Player()
     : m_isMoving{ false }, m_texturePath{ "sprites/player_sheet.bmp" },
