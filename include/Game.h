@@ -8,6 +8,7 @@
 #include <SFML/Window.hpp>
 #include <Player.h>
 #include <Tile.h>
+#include <Engine.h>
 
 
 class Game {
@@ -15,7 +16,8 @@ private:
     sf::RenderWindow m_window;
     sf::Event m_event;
     Player player;
-    Tile tile;
+    Tile tile{};
+    Engine engine{&player, &m_window};
 
     void InitWindow();
 

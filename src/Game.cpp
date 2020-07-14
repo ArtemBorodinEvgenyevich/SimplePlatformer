@@ -54,8 +54,10 @@ void Game::runGameCycle()
         // Clear screen from previous frame and display a new rendered frame
         m_window.clear();
 
-        player.update();
-        player.draw(m_window);
+        engine.MakeIteration();
+
+//        player.update();
+//        player.draw(m_window);
 
         tile.draw(m_window);
 

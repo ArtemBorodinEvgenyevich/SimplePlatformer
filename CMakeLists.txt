@@ -78,6 +78,5 @@ add_executable(SimplePlatformer
         src/Game.cpp include/Game.h
         src/Player.cpp include/Player.h
         src/Tile.cpp include/Tile.h
-        src/Engine.cpp include/Engine.h
-        )
+        src/Engine.cpp include/Engine.h)
 target_link_libraries (SimplePlatformer sfml-graphics sfml-window sfml-system)
