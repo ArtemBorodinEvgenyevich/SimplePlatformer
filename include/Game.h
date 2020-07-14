@@ -7,12 +7,15 @@
 
 #include <SFML/Window.hpp>
 #include <Player.h>
+#include <Tile.h>
+
 
 class Game {
 private:
     sf::RenderWindow m_window;
     sf::Event m_event;
     Player player;
+    Tile tile;
 
     void InitWindow();
 

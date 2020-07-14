@@ -58,6 +58,8 @@ void Game::runGameCycle()
         player.update();
         player.draw(m_window);
 
+        tile.draw(m_window);
+
         m_window.display();
     }
 
