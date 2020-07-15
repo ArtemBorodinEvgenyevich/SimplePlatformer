@@ -5,30 +5,44 @@
 #ifndef SIMPLEPLATFORMER_ANIMATIONENTITY_H
 #define SIMPLEPLATFORMER_ANIMATIONENTITY_H
 
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <GraphicsStructures.h>
 
+
+// TODO: Should we run animation in a thread?
 class AnimationEntity
 {
 private:
-    float m_loopDuration;
-    sf::Clock m_animationTimer;
-    sf::IntRect m_currentFrameRect;
-    sf::Texture m_tileSet;
+    ObjectSprite& m_sprite;
+    sf::Clock& m_animationTimer;
 
+    float m_frameShift;
+    float m_frameShiftLimit;
+    float m_playingDuration;
+	sf::IntRect m_spriteFrame;
+	sf::Vector2<int> m_defaultFramePosition;
 
 public:
-    AnimationEntity(float loopDuration=0.5f);
+    AnimationEntity(ObjectSprite& sprite, sf::Clock& animationTimer,
+                    float playingDuration, float frameShift, float frameShiftLimit);
     ~AnimationEntity();
 
-    sf::IntRect getCurrentFrameRect();
-    void setCurrentFrameRect(sf::IntRect &frameRect);
-    void setNewTileSet(sf::Texture &tileSet);
-    void updateAnimation();
+    void play();
 
-    // TODO: Make class a friend class of ObjectEntity!!
-    // TODO: Get access to isMoving variable to control animation.
-    //friend bool checkIsMoving();
+    void setFramePos(sf::Vector2<int> pos);
+    sf::Vector2<int> getFramePos();
+
+    void setFrameShift(float shift);
+    float getFrameShift();
+
+    void setFrameShiftLimit(float limit);
+    float getFrameShiftLimit() const;
+
+    void setPlayingDuration(float duration);
+    float getPlayingDuration() const;
+
 };
 
 

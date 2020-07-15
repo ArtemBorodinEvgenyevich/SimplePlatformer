@@ -4,12 +4,15 @@
 
 #include "GraphicsStructures.h"
 
+
+// ObjectSprite
+// ---------------------------------------------------------------------------------------------------------------------
+
 ObjectSprite::ObjectSprite(std::string tileSheetPath)
-    : sf::Sprite{ }, m_spriteSheetPath{tileSheetPath },
-      m_tileRect{ 0, 0, 32, 32 }
+    : sf::Sprite{ }, m_spriteSheetPath{ tileSheetPath },
+      m_tileFrame{0, 0, 68, 68 }
 {
-    setSprite();
-    setTextureRect(m_tileRect);
+    setSpriteFrame(m_tileFrame);
 }
 
 ObjectSprite::~ObjectSprite()
@@ -17,24 +20,46 @@ ObjectSprite::~ObjectSprite()
 
 }
 
-void ObjectSprite::setSprite()
-{
-    if (!m_spriteSheet.loadFromFile(m_spriteSheetPath))
-        exit(1);
 
-    setTexture(m_spriteSheet);
-}
-
+/**
+* Load spritesheet from file to sf::Texture, set it to sprite and update current sprite filepath.
+*/
 void ObjectSprite::setSprite(std::string spriteSheetPath)
 {
-    if (!m_spriteSheet.loadFromFile(m_spriteSheetPath))
+    if (!m_spriteSheet.loadFromFile(spriteSheetPath))
         exit(1);
 
-    m_spriteSheetPath = spriteSheetPath;
     setTexture(m_spriteSheet);
+    m_spriteSheetPath = spriteSheetPath;
 
 }
 
-sf::IntRect ObjectSprite::getTileRect() { return m_tileRect; }
+/**
+ * Get sprite's current tile frame.
+ * @return sf::IntRect instance.
+ */
+sf::IntRect ObjectSprite::getSpriteFrame() { return m_tileFrame; }
 
-void ObjectSprite::setTileRect(int x, int y, int width, int height) { m_tileRect = sf::IntRect{x, y, width, height};}
+/**
+ * Set new tile frame and assign to sprite.
+ * @param x
+ * @param y
+ * @param width
+ * @param height
+ */
+void ObjectSprite::setSpriteFrame(int x, int y, int width, int height)
+{
+    m_tileFrame = sf::IntRect{x, y, width, height};
+    setTextureRect(m_tileFrame);
+}
+
+/**
+ * Set new tile frame and assign to sprite.
+ * @param spriteFrame
+ */
+void ObjectSprite::setSpriteFrame(sf::IntRect spriteFrame)
+{
+    setTextureRect(spriteFrame);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------

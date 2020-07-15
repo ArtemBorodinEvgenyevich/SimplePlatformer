@@ -9,22 +9,22 @@
 # include <SFML/Graphics.hpp>
 
 
-class ObjectSprite: protected sf::Sprite
+class ObjectSprite: public sf::Sprite
 {
 private:
     std::string m_spriteSheetPath;
     sf::Texture m_spriteSheet;
-    sf::IntRect m_tileRect;
+    sf::IntRect m_tileFrame;
 
 public:
     ObjectSprite(std::string tileSheetPath="sprites/no_tile.bmp");
     ~ObjectSprite();
 
-    void setSprite();
     void setSprite(std::string spriteSheetPath);
-    sf::IntRect getTileRect();
-    void setTileRect(int x, int y, int width, int height);
-};
+    sf::IntRect getSpriteFrame();
+    void setSpriteFrame(int x, int y, int width, int height);
+    void setSpriteFrame(sf::IntRect spriteFrame);
 
+};
 
 #endif //SIMPLEPLATFORMER_GRAPHICSSTRUCTURES_H
