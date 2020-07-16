@@ -9,10 +9,11 @@
 
 class Engine{
 private:
-    Player* player;
-    sf::RenderTarget* target;
+    Player player;
+    //sf::RenderTarget target;
 public:
-    Engine(Player* player, sf::RenderTarget* target);
+    //Engine(Player &player, sf::RenderTarget &target);
+    Engine(Player &player);
     ~Engine();
 
     void MakeIteration();

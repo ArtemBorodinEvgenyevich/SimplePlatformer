@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 
-Game::Game()
+Game::Game(): engine{player}
 {
     InitWindow();
 }
@@ -56,8 +56,8 @@ void Game::runGameCycle()
 
         engine.MakeIteration();
 
-//        player.update();
-//        player.draw(m_window);
+        player.update();
+        player.draw(m_window);
 
         tile.draw(m_window);
 

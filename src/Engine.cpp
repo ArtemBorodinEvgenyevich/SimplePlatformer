@@ -4,9 +4,16 @@
 
 #include "Engine.h"
 
-Engine::Engine(Player* player, sf::RenderTarget* target) {
+/*
+Engine::Engine(Player &player, sf::RenderTarget &target) {
     Engine::player = player;
     Engine::target = target;
+}
+*/
+
+Engine::Engine(Player &player)
+{
+    Engine::player = player;
 }
 
 Engine::~Engine() {
@@ -14,6 +21,6 @@ Engine::~Engine() {
 }
 
 void Engine::MakeIteration() {
-    player->update();
-    player->draw(*target);
+//    player->update();
+//    player->draw(*target);
 }
