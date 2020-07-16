@@ -7,27 +7,26 @@
 
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <AnimationEntity.h>
+#include <ObjectEntity.h>
 
-class Player {
+
+class Player: public ObjectEntity
+{
 private:
-    bool m_isMoving;
-    std::string m_texturePath;
-    sf::Texture m_objTexture;
-    sf::Sprite  m_objSprite;
-    sf::IntRect m_spriteFrame;
-    sf::Clock m_animationTimer;
+    sf::Clock m_timer;
+    AnimationEntity m_animIDLE;
+    AnimationEntity m_animRunR;
+    AnimationEntity m_animRunL;
 
-    void SetTexture();
-    void SetSprite();
-    void UpdateMovement();
-    void UpdateAnimation();
+	void InitAnimations();
 
 public:
-    Player();
-    ~Player();
+	Player();
 
-    void draw(sf::RenderTarget &target);
-    void update();
+    ~Player();
+    void updateMovement() override;
+    void update() override;
 };
 
 

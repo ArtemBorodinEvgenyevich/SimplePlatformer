@@ -2,17 +2,20 @@
 // Created by artem on 12.07.2020.
 //
 
-#include <pbt.h>
 #include "Player.h"
 
-Player::Player()
-    : m_isMoving{ false }, m_texturePath{ "sprites/player_sheet.bmp" },
-      m_spriteFrame{ 0, 0, 68, 68 }
-{
-    SetTexture();
-    SetSprite();
 
-    m_animationTimer.restart();
+// TODO: Move some functions to a new "ObjectMovable" class
+Player::Player()
+    : ObjectEntity{ }, m_animIDLE(m_objectSprite, m_timer, 0.2f, 68, 204),
+      m_animRunR(m_objectSprite, m_timer, 0.1f, 68, 272),
+      m_animRunL(m_objectSprite, m_timer, 0.1f, 68, 272)
+{
+    m_objectSprite.setSprite("sprites/player.bmp");
+
+    InitAnimations();
+
+    m_timer.restart();
 }
 
 Player::~Player()
@@ -21,73 +24,60 @@ Player::~Player()
 }
 
 
-// Private
-// -----------------------------------------------------
-void Player::SetTexture()
+void Player::InitAnimations()
 {
-    if (!m_objTexture.loadFromFile(m_texturePath))
-        exit(1);
+	m_animIDLE.setFramePos(sf::Vector2<int>{0, 0});
+	m_animRunR.setFramePos(sf::Vector2<int>{0, 68});
+	m_animRunL.setFramePos(sf::Vector2<int>{0, 136});
 }
 
-void Player::SetSprite()
+/**
+ * Overriden ObjectEntity::updateMovement function.
+ */
+void Player::updateMovement()
 {
-    m_objSprite.setTextureRect(m_spriteFrame);
-    m_objSprite.setTexture(m_objTexture);
-}
-
-void Player::UpdateMovement()
-{
-    m_isMoving = false;
+	//ObjectEntity::updateMovement();
+    ObjectEntity::m_isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
     {
-        m_isMoving = true;
-        m_objSprite.move(-0.68, 0.f);
+	    sf::Thread thread{&AnimationEntity::play, &m_animRunL};
+    	m_isMoving = true;
+    	thread.launch();
+        m_objectSprite.move(-0.68, 0.f);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
     {
-        m_isMoving = true;
-        m_objSprite.move(0.68, 0.f);
+        sf::Thread thread{&AnimationEntity::play, &m_animRunR};
+    	m_isMoving = true;
+	    thread.launch();
+	    m_objectSprite.move(0.68, 0.f);
     }
+    /*
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
     {
         m_isMoving = true;
-        m_objSprite.move(0.f, -0.68);
+        m_objectSprite.move(0.f, -0.68);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
     {
         m_isMoving = true;
-        m_objSprite.move(0.f, 0.68);
+        m_objectSprite.move(0.f, 0.68);
     }
-}
+     */
 
-void Player::UpdateAnimation()
-{
-
-    if (m_animationTimer.getElapsedTime().asSeconds() >= 0.5f)
+    if (!m_isMoving)
     {
-        if (!m_isMoving)
-        {
-            m_spriteFrame.left += 68.f;
-            if (m_spriteFrame.left >= 136)
-                m_spriteFrame.left = 0;
-        }
-
-        m_objSprite.setTextureRect(m_spriteFrame);
-        m_animationTimer.restart();
+	    sf::Thread thread{&AnimationEntity::play, &m_animIDLE};
+	    thread.launch();
     }
 
 }
 
-// Public
-// -----------------------------------------------------
-void Player::draw(sf::RenderTarget &target)
-{
-    target.draw(m_objSprite);
-}
-
-void Player::update()
-{
-    UpdateMovement();
-    UpdateAnimation();
+/**
+ * Overriden ObjectEntity::update function.
+ */
+void Player::update() {
+    updateMovement();
+    ObjectEntity::update();
 }

@@ -16,8 +16,6 @@ Game::~Game()
 }
 
 
-// Private
-// -----------------------------------------------------
 void Game::InitWindow()
 {
     // Setup video mode
@@ -35,9 +33,6 @@ void Game::InitWindow()
     m_window.setActive(true);
 }
 
-
-// Public
-// -----------------------------------------------------
 // TODO: Maybe call in a constructor?
 void Game::runGameCycle()
 {
