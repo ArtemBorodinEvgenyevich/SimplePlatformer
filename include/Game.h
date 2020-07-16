@@ -17,7 +17,7 @@ private:
     sf::Event m_event;
     Player player;
     Tile tile{};
-    Engine engine{&player, &m_window};
+    Engine engine;
 
     void InitWindow();
 
