@@ -6,6 +6,7 @@
 #define SIMPLEPLATFORMER_LEVEL_H
 
 #include <string>
+#include "Tile.h"
 
 class Level {
 private:
@@ -16,10 +17,12 @@ private:
     //Array 3x3
     //[0][1][2][3][4][5][6][7][8]
     //0, 1, 2 <- first layer
-    int Grid[];
+    Tile* Grid[];
 public:
     Level(int width, int height);
     ~Level();
+
+    void draw(sf::RenderTarget &target);
 };
 
 

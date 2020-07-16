@@ -7,7 +7,6 @@
 
 #include <SFML/Window.hpp>
 #include <Player.h>
-#include <Tile.h>
 #include <Engine.h>
 #include <Level.h>
 
@@ -17,7 +16,6 @@ private:
     sf::RenderWindow m_window;
     sf::Event m_event;
     Player player;
-    Tile tile{};
     Engine engine;
     Level level;
 

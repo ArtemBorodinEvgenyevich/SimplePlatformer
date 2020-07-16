@@ -16,19 +16,28 @@ Level::Level(int width, int height)
 
     pattern = "WWWW WWWW";
 
-    for(int i = 0; i < pattern.length(); i++){
-        if (pattern[i] == 'W'){
-            Grid[i] = 1;
-        }
-        else{
-            Grid[i] = 0;
-        }
+    int x = 0;
+    int y = 0;
 
-        cout << Grid[i] << endl;
+    for(int i = 0; i < pattern.length(); i++){
+        x = (i % Width) * 68;
+
+        Grid[i] = new Tile(x, y);
+
+        if(x == 68 * (Width - 1))
+            y += 68;
     }
 }
 
 Level::~Level()
 {
 
+}
+
+void Level::draw(sf::RenderTarget &target)
+{
+    for(int i = 0; i < GridLength; i++)
+    {
+        target.draw(Grid[i]->GetSprite());
+    }
 }

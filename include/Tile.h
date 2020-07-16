@@ -14,14 +14,27 @@ private:
     sf::Texture texture;
     sf::Sprite  sprite;
 
+    int position_x;
+    int position_y;
+
     void SetTexture();
     void SetSprite();
 
+    void UpdateSpritePosition();
+
 public:
     Tile();
+    Tile(int x, int y);
     ~Tile();
 
     void draw(sf::RenderTarget &target);
+    sf::Sprite GetSprite();
+
+    int GetPositionX();
+    int GetPositionY();
+
+    int GetSpritePositionX();
+    int GetSpritePositionY();
 };
 
 #endif //SIMPLEPLATFORMER_TILE_H
