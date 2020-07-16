@@ -12,11 +12,19 @@ Tile::Tile()
 
     position_x = 0;
     position_y = 0;
+
+    type = TileTypes{TileTypes::GROUND};
 }
 
-Tile::Tile(int x, int y)
+Tile::Tile(int x, int y, TileTypes type)
 {
-    Tile::texturePath = "sprites/ground2.bmp";
+    Tile::type = type;
+
+    if(type == TileTypes::SKY)
+        Tile::texturePath = "sprites/sky.bmp";
+    else
+        Tile::texturePath = "sprites/ground2.bmp";
+
     SetTexture();
     SetSprite();
 

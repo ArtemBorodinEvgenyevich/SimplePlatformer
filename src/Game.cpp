@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 
-Game::Game() : engine{&player, &m_window}, level{3, 3}
+Game::Game() : engine{&player, &m_window}, level{10, 7}
 {
     InitWindow();
 }
@@ -54,12 +54,12 @@ void Game::runGameCycle()
         // Clear screen from previous frame and display a new rendered frame
         m_window.clear();
 
+        level.draw(m_window);
+
         engine.MakeIteration();
 
 //        player.update();
 //        player.draw(m_window);
-
-        level.draw(m_window);
 
         m_window.display();
     }

@@ -8,6 +8,12 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+enum class TileTypes
+{
+    GROUND,
+    SKY
+};
+
 class Tile{
 private:
     std::string texturePath;
@@ -17,6 +23,8 @@ private:
     int position_x;
     int position_y;
 
+    TileTypes type;
+
     void SetTexture();
     void SetSprite();
 
@@ -24,7 +32,7 @@ private:
 
 public:
     Tile();
-    Tile(int x, int y);
+    Tile(int x, int y, TileTypes type);
     ~Tile();
 
     void draw(sf::RenderTarget &target);

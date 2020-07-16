@@ -14,7 +14,7 @@ Level::Level(int width, int height)
     GridLength = Width * Height;
     Grid[GridLength];
 
-    pattern = "WWWW WWWW";
+    pattern = "WWWWWWWWWWW        WW        WW        WW        WW        WWWWWWWWWWW";
 
     int x = 0;
     int y = 0;
@@ -22,7 +22,10 @@ Level::Level(int width, int height)
     for(int i = 0; i < pattern.length(); i++){
         x = (i % Width) * 68;
 
-        Grid[i] = new Tile(x, y);
+        if(pattern[i] == 'W')
+            Grid[i] = new Tile(x, y, TileTypes::GROUND);
+        else
+            Grid[i] = new Tile(x, y, TileTypes::SKY);
 
         if(x == 68 * (Width - 1))
             y += 68;
