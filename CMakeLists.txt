@@ -6,6 +6,9 @@ set(CMAKE_CXX_STANDARD 14)
 # Uncomment to make a 'Make' verbose
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
+# Setup 3rd party libs
+# ----------------------------------------------------------------------------------------------------------------------
+
 # Setup for UNIX-like system
 if (UNIX)
     message("--|| Using Unix-like OS ||--")
@@ -50,6 +53,16 @@ elseif(WIN32)
 
 endif()
 
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Setup resource folder
+# ----------------------------------------------------------------------------------------------------------------------
+
+set(PROJECT_SPRITE_DIR "${CMAKE_CURRENT_LIST_DIR}/rsc/sprites")
+file(COPY ${PROJECT_SPRITE_DIR} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+# ----------------------------------------------------------------------------------------------------------------------
+
 include_directories(SFML_INCLUDE_DIR include)
 find_package(SFML 2.5.1 COMPONENTS system window graphics network audio)
 
@@ -57,7 +70,13 @@ if(SFML_FOUND)
     message(STATUS "SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR}")
     message(STATUS "SFML_LIBRARIES: ${SFML_LIBRARIES}")
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
+    message(STATUS "PROJECT_SPRITE_DIR: ${PROJECT_SPRITE_DIR}")
 endif()
 
-add_executable(SimplePlatformer SimplePlatformer.cpp src/Game.cpp include/Game.h)
+add_executable(SimplePlatformer
+        SimplePlatformer.cpp
+        src/Game.cpp include/Game.h
+        src/Player.cpp include/Player.h
+        src/Tile.cpp include/Tile.h
+        src/Engine.cpp include/Engine.h)
 target_link_libraries (SimplePlatformer sfml-graphics sfml-window sfml-system)

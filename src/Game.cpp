@@ -5,12 +5,19 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 
-
-Game::Game()
+Game::Game(): engine{player}
 {
     InitWindow();
 }
 
+Game::~Game()
+{
+
+}
+
+
+// Private
+// -----------------------------------------------------
 void Game::InitWindow()
 {
     // Setup video mode
@@ -28,6 +35,9 @@ void Game::InitWindow()
     m_window.setActive(true);
 }
 
+
+// Public
+// -----------------------------------------------------
 // TODO: Maybe call in a constructor?
 void Game::runGameCycle()
 {
@@ -43,6 +53,14 @@ void Game::runGameCycle()
 
         // Clear screen from previous frame and display a new rendered frame
         m_window.clear();
+
+        engine.MakeIteration();
+
+        player.update();
+        player.draw(m_window);
+
+        tile.draw(m_window);
+
         m_window.display();
     }
 
