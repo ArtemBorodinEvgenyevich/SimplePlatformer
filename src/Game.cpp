@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 
-Game::Game() : engine{&player, &m_window}
+Game::Game() : engine{&player, &m_window}, level{3, 3}
 {
     InitWindow();
 }

@@ -9,6 +9,7 @@
 #include <Player.h>
 #include <Tile.h>
 #include <Engine.h>
+#include <Level.h>
 
 
 class Game {
@@ -18,6 +19,7 @@ private:
     Player player;
     Tile tile{};
     Engine engine;
+    Level level;
 
     void InitWindow();
 
